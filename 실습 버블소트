@@ -1,0 +1,10 @@
+Ist = list(map(int, input().split()))
+print(list)
+n = len(Ist)
+for i in range(n):
+    for j in range(i, n):
+        if(Ist[j] <=Ist[i]):
+            tmp = Ist[j]
+            Ist[j] = Ist[i]
+            Ist[i] = tmp
+print(Ist)           
