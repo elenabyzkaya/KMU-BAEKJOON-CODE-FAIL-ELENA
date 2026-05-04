@@ -1,0 +1,39 @@
+import random
+
+def generate_matrix(n):
+    limit = n * n * 10
+    return [[random.randint(1, limit - 1) for _ in range(n)] for _ in range(n)]
+
+def print_matrix(matrix, name):
+    print(f"\n[{name}]")
+    for row in matrix:
+        for val in row:
+            print(f"{val:4}", end=" ")
+        print()
+
+def solve_1():
+    n = int(input("Enter N (1 < N <= 5): "))
+    if not (1 < n <= 5):
+        print("Invalid input!")
+        return
+
+    A = generate_matrix(n)
+    B = generate_matrix(n)
+    C = generate_matrix(n)
+
+    # Matrix Multiplication (A * B)
+    AB = [[0 for _ in range(n)] for _ in range(n)]
+    for i in range(n):
+        for j in range(n):
+            for k in range(n):
+                AB[i][j] += A[i][k] * B[k][j]
+
+    # Matrix Addition (AB + C)
+    result = [[AB[i][j] + C[i][j] for j in range(n)] for i in range(n)]
+
+    print_matrix(A, "Matrix A")
+    print_matrix(B, "Matrix B")
+    print_matrix(C, "Matrix C")
+    print_matrix(result, "Result (A*B + C)")
+
+solve_1()
